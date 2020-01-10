@@ -1,0 +1,13 @@
+pipeline {
+  stages {
+    stage('Run kubernetes cluster') {
+      steps{
+         sh "./install_cluster.sh"
+      }
+    }
+    stage('Create deployment') {
+      steps{
+        sh "./deployment.sh"
+    }
+  }
+}

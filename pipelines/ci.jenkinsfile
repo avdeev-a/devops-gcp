@@ -1,0 +1,24 @@
+pipeline {
+  stages {
+    stage('Cloning Git') {
+      steps {
+        git 'some remote/local repository'
+      }
+    }
+    stage('Build') {
+       steps {
+         sh 'docker build --no-cache -t nexus . '
+       }
+    }
+    stage('Tagging') {
+      steps {
+        sh 'docker tag nexus:latest us.gcr.io/aliz-loyal/nexus'
+      }
+    }
+    stage('Pushing') {
+      steps{
+        sh 'docker push us.gcr.io/aliz-loyal/nexus'
+      }
+    }
+  }
+}
