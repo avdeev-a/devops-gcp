@@ -19,7 +19,9 @@ spec:
         - containerPort: 5000
         volumeMounts:
           - name: nexus-volume
-            mountPath: /nexus-data 
+            mountPath: /nexus-data
+      securityContext:
+        fsGroup: 200
       volumes:
         - name: nexus-volume
           persistentVolumeClaim:
